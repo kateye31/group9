@@ -17,6 +17,7 @@ Knight's Escape is a browser escape room that teaches Java OOP. A warlock traps 
 | `game.js` | How screens work, the victory screen | Build (Leslie, Sanjana) |
 | `index.html` | Page structure (rarely changes) | Build |
 | `README.md` | Full game overview and git workflow | Katrina |
+| `TEAM-GUIDE.md` | Setup, weekly routine, AI tips, demo timeline | Katrina |
 | `WELCOME.md` | This page | Katrina |
 
 Most tasks only touch one file. Every chamber has an example you can copy.
