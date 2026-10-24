@@ -50,6 +50,7 @@ const MAZE = {
       explain: "Each new creates one object, so there are 2.",
     },
     // TODO (Sanjana): write turns 3, 4 and 5
+    //Hi!
   ],
 };
 
