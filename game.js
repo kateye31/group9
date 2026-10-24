@@ -2,6 +2,7 @@
 // Flow: start -> warlock intro -> Maze -> Alchemy Lab -> Hall of Illusions -> Final Door -> escape
 
 const app = document.getElementById("app");
+// keys: the key counter. Starts at 0, +1 per Final Door answer (see finalCheck)
 let player = { knight: null, difficulty: null, hintsLeft: 0, keys: 0, spell: [] };
 
 // Small helper: put HTML on the screen
@@ -15,6 +16,7 @@ function codeBlock(code) {
   return `<pre><code>${safe}</code></pre>`;
 }
 
+// Progress bar at the top of every chamber; shows the key counter
 function header(chamber, step, total) {
   return `<p class="progress">${chamber.title} · ${step} of ${total} · Keys: ${player.keys} · Hints left: ${player.hintsLeft}</p>
           <p class="concept">${chamber.concept}</p>`;
@@ -22,6 +24,7 @@ function header(chamber, step, total) {
 
 // ---------- Start: choose knight, difficulty ----------
 function startScreen() {
+  // New game: key counter goes back to 0
   player = { knight: null, difficulty: null, hintsLeft: 0, keys: 0, spell: [] };
   const knights = KNIGHTS.map((k, i) =>
     `<button class="choice" style="border-color:${k.color}" onclick="pickKnight(${i})">${k.name}</button>`).join("");
@@ -139,6 +142,7 @@ function finalCheck(n) {
   const list = q.lookFor.map((x) => `<li>${x}</li>`).join("");
   show(`<h2>Compare your answer</h2><p><b>You said:</b> ${text.replace(/</g, "&lt;")}</p>
         <p><b>A strong answer:</b> ${q.model}</p><p>Did yours include:</p><ul>${list}</ul>
+        <!-- Key counter goes up here: player.keys++ when the player accepts the key -->
         <button onclick="player.keys++; finalQuestion(${n + 1})">Yes, take the key</button>
         <button class="secondary" onclick="finalQuestion(${n})">Let me try again</button>`);
 }
@@ -146,6 +150,7 @@ function finalCheck(n) {
 // ---------- Escape ----------
 function escapeScreen() {
   // TODO (build crew): make this screen feel like a victory
+  // Final key count is shown below
   show(`<h1>You escaped!</h1><p class="warlock">${WARLOCK.name}: "${WARLOCK.defeated}"</p>
         <p>${player.knight.name} · ${player.difficulty.name} · Keys: ${player.keys}</p>
         <button onclick="startScreen()">Play again</button>`);
