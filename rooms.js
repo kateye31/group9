@@ -61,32 +61,37 @@ const LAB = {
   concept: "Methods and return values",
   story: "Bubbling potions line the shelves. Each one whispers a word when you read its code.",
   steps: [
+     // Step 1: calls a method, the method returns "OPEN", so that prints.
     {
       code: 'class Potion {\n    String word() { return "OPEN"; }\n}\n\nSystem.out.println(new Potion().word());',
       choices: ["OPEN", "word", "Potion"],
       answer: 0,
       hint: "What does the word() method return?",
     },
+    // Step 2: .toUpperCase() makes a new ALL-CAPS copy of the string. "sesame" -> "SESAME".
     {
       code: 'String s = "sesame";\nSystem.out.println(s.toUpperCase());',
       choices: ["sesame", "SESAME", "s"],
       answer: 1,
       hint: "toUpperCase() returns a new String in capital letters.",
     },
+
+    // Step 3: "Key: " + 42 glues together into "Key: 42". Then we substring it.
     {
       code: 'int num = 42;\nString magic = "Key: " + num;\nSystem.out.println(magic.substring(5));',
       choices: ["42", "Key: ", "magic"],
       answer: 0,
       hint: "substring(5) extracts the part of the string after the first 5 characters.",
     },
+
+    // Step 4 (Fixed): Print "Alchemy" as the right choice.
     {
-      code: 'System.out.println("Al" + "chemy".substring(2));',
+      code: 'System.out.println("Al" + "chemy");',
       choices: ["Alchemy", "chemy", "Al"],
-      answer: 1,
-      hint: "substring(2) extracts the part of the string starting from index 2.",
+      answer: 0,
+      hint: "This concatenates 'Al' and 'chemy' to form 'Alchemy'.",
     },
   ],
-    // TODO (Leslie/Sanjana): 2 more steps, so the spell has 4 words
 };
 
 // ---------- Chamber 3: The Hall of Illusions ----------
