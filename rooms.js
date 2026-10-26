@@ -61,38 +61,39 @@ const LAB = {
   concept: "Methods and return values",
   story: "Bubbling potions line the shelves. Each one whispers a word when you read its code.",
   steps: [
-     // Step 1: calls a method, the method returns "OPEN", so that prints.
+        // Step 1: Print "Squire"
     {
-      code: 'class Potion {\n    String word() { return "OPEN"; }\n}\n\nSystem.out.println(new Potion().word());',
-      choices: ["OPEN", "word", "Potion"],
+      code: 'class Knight {\n    String title() { return "Squire"; }\n}\n\nSystem.out.println(new Knight().title());',
+      choices: ["Squire", "title", "Knight"],
       answer: 0,
-      hint: "What does the word() method return?",
+      hint: "What does the title() method return?",
     },
-    // Step 2: .toUpperCase() makes a new ALL-CAPS copy of the string. "sesame" -> "SESAME".
+    // Step 2: Print "doing"
     {
-      code: 'String s = "sesame";\nSystem.out.println(s.toUpperCase());',
-      choices: ["sesame", "SESAME", "s"],
+      code: 'String action = "doing";\nSystem.out.println(action);',
+      choices: ["do", "doing", "action"],
       answer: 1,
-      hint: "toUpperCase() returns a new String in capital letters.",
+      hint: "The variable 'action' holds the string 'doing'.",
     },
 
-    // Step 3: "Key: " + 42 glues together into "Key: 42". Then we substring it.
+    // Step 3: Print "king's"
     {
-      code: 'int num = 42;\nString magic = "Key: " + num;\nSystem.out.println(magic.substring(5));',
-      choices: ["42", "Key: ", "magic"],
-      answer: 0,
-      hint: "substring(5) extracts the part of the string after the first 5 characters.",
+      code: 'String possessive = "king";\nSystem.out.println(possessive + "\'s");',
+      choices: ["king", "king's", "possessive"],
+      answer: 1,
+      hint: "Adding '\\'s' to 'king' makes it possessive.",
     },
 
-    // Step 4 (Fixed): Print "Alchemy" as the right choice.
+    // Step 4: Print "work"
     {
-      code: 'System.out.println("Al" + "chemy");',
-      choices: ["Alchemy", "chemy", "Al"],
+      code: 'String task = "work";\nSystem.out.println(task);',
+      choices: ["work", "task", "task."],
       answer: 0,
-      hint: "This concatenates 'Al' and 'chemy' to form 'Alchemy'.",
-    },
+      hint: "The variable 'task' holds the string 'work'.",
+      },
   ],
 };
+
 
 // ---------- Chamber 3: The Hall of Illusions ----------
 // 3 doors per round. They look alike, but only one has correct code.
