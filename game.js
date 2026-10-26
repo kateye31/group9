@@ -53,6 +53,11 @@ function useHint(text) {
   document.getElementById("hint").textContent = "Hint: " + text;
 }
 
+// 👉 LESLIE NOTE (escape screen task, weak-spot scroll). Delete this note when you're done.
+//   Every wrong answer in every chamber runs this function. So it's the place to count mistakes.
+//   1. Up at the top, give `player` a place to keep counts, one per chamber.
+//   2. Here, add 1 to the count for the chamber the player is in right now.
+//   3. On the escape screen, find the chamber with the biggest count and tell the player to review it.
 function taunt() {
   const t = WARLOCK.taunts[Math.floor(Math.random() * WARLOCK.taunts.length)];
   document.getElementById("feedback").textContent = `${WARLOCK.name}: "${t}"`;
@@ -135,6 +140,11 @@ function finalQuestion(n) {
         <button onclick="finalCheck(${n})">Answer the warlock</button><p id="feedback"></p>`);
 }
 
+// 👉 SANJANA NOTE (keys are flashcards). Delete this note when you're done.
+//   1. Look a few lines down for the "Yes, take the key" button. Clicking it = a key is earned.
+//   2. On this same screen, show the idea as a little card. Its text is already here: q.model
+//   3. Ask Shirley how the card should look in style.css.
+//   4. Play to the Final Door, answer one question, and check the card shows up.
 function finalCheck(n) {
   const text = document.getElementById("answer").value.trim();
   if (!text) { document.getElementById("feedback").textContent = "The warlock waits for an answer..."; return; }
@@ -150,6 +160,12 @@ function finalCheck(n) {
 // ---------- Escape ----------
 function escapeScreen() {
   // TODO (build crew): make this screen feel like a victory
+  // 👉 LESLIE NOTE (escape screen task). Delete this note when you're done.
+  //   1. Play the whole game once first, so you know what this screen looks like now.
+  //   2. Make it feel like a win: a big title, the warlock's defeated line, your knight, "Keys: 2 of 3".
+  //   3. Weak-spot scroll: show the chamber with the most mistakes (see the LESLIE NOTE above taunt()).
+  //   4. Pegasus ending: few mistakes = Shirley's pegasus drawing, otherwise the knight walking out.
+  //   5. Keep the Play again button. Then test twice: once carefully, once with mistakes on purpose.
   // Final key count is shown below
   show(`<h1>You escaped!</h1><p class="warlock">${WARLOCK.name}: "${WARLOCK.defeated}"</p>
         <p>${player.knight.name} · ${player.difficulty.name} · Keys: ${player.keys}</p>
