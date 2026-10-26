@@ -73,8 +73,20 @@ const LAB = {
       answer: 1,
       hint: "toUpperCase() returns a new String in capital letters.",
     },
-    // TODO (Leslie/Sanjana): 2 more steps, so the spell has 4 words
+    {
+      code: 'int num = 42;\nString magic = "Key: " + num;\nSystem.out.println(magic.substring(5));',
+      choices: ["42", "Key: ", "magic"],
+      answer: 0,
+      hint: "substring(5) extracts the part of the string after the first 5 characters.",
+    },
+    {
+      code: 'System.out.println("Al" + "chemy".substring(2));',
+      choices: ["Alchemy", "chemy", "Al"],
+      answer: 1,
+      hint: "substring(2) extracts the part of the string starting from index 2.",
+    },
   ],
+    // TODO (Leslie/Sanjana): 2 more steps, so the spell has 4 words
 };
 
 // ---------- Chamber 3: The Hall of Illusions ----------
