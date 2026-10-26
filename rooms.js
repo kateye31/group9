@@ -20,6 +20,11 @@ const DIFFICULTIES = [
 // ---------- The warlock ----------
 const WARLOCK = {
   // TODO (story): give him a name and a personality (see the Council answers)
+  // 👉 TVISHAA NOTE (warlock task). Delete this note when you're done.
+  //   1. name: change The Warlock to his real name. Keep the quote marks.
+  //   2. intro: his opening speech, 3 to 4 short sentences, all inside the quote marks.
+  //   3. He's a sly trickster (the Council's pick). His one lie goes in the Hall of Illusions story:
+  //      Ctrl+F: Three doors shimmer
   name: "The Warlock",
   intro: "Welcome to my dungeon, little knight. Four chambers stand between you and freedom. Each one is locked with code. Good luck... you'll need it.",
   taunts: ["Wrong! Try again, if you dare.", "Ha! My dungeon grows stronger.", "Not quite. Think like a programmer."],
@@ -29,6 +34,8 @@ const WARLOCK = {
 // ---------- Chamber 1: The Maze ----------
 // 5 turns. Each turn is a multiple-choice question; the right answer is the right direction.
 const MAZE = {
+  // 👉 LESLIE NOTE (rename task). On the next line, change The Maze to LabyrinthLearn.
+  //   Keep the quote marks. Save, refresh index.html, check the first chamber's title. Delete this note after.
   title: "The Maze",
   concept: "Classes and objects",
   story: "Stone walls twist in every direction. Choose the right path at each turn.",
@@ -82,6 +89,8 @@ const LAB = {
 const HALL = {
   title: "The Hall of Illusions",
   concept: "Inheritance and polymorphism",
+  // 👉 TVISHAA NOTE (warlock task). Add one sentence to the story below where the warlock lies to you,
+  //   like swearing the fake door is the real one. Save, play to the Hall and read it. Delete this note after.
   story: "Three doors shimmer before you. Two are illusions. Only one is real.",
   rounds: [
     {

@@ -53,6 +53,12 @@ function useHint(text) {
   document.getElementById("hint").textContent = "Hint: " + text;
 }
 
+// 👉 LESLIE NOTE (escape screen task, Part B: count mistakes). Delete this note when you're done.
+//   Every wrong answer, in every chamber, ends up in this function.
+//   1. Ctrl+F: let player   (near the top). Add a mistake counter for each chamber, all starting at 0.
+//   2. Ctrl+F: startScreen   It rebuilds player for each new game, so add the same counters there too.
+//   3. Ctrl+F: return taunt()   It shows up 3 times, once per chamber. Each one is a wrong answer.
+//      Right before each one, add 1 to that chamber's counter.
 function taunt() {
   const t = WARLOCK.taunts[Math.floor(Math.random() * WARLOCK.taunts.length)];
   document.getElementById("feedback").textContent = `${WARLOCK.name}: "${t}"`;
@@ -135,6 +141,13 @@ function finalQuestion(n) {
         <button onclick="finalCheck(${n})">Answer the warlock</button><p id="feedback"></p>`);
 }
 
+// 👉 SANJANA NOTE (keys are flashcards). Delete this note when you're done.
+//   In this function, q is the question the player just answered.
+//   q.model is its strong answer, like "A class is a blueprint...". That's your flashcard's text.
+//   1. A few lines down, find the "Yes, take the key" button. Clicking it = a key is earned.
+//   2. Inside the same show(` `) text, add a small box that shows q.model.
+//   3. Ask Shirley how the card should look (she styles it in style.css).
+//   4. Save, play to the Final Door, answer one question, and check the card shows up.
 function finalCheck(n) {
   const text = document.getElementById("answer").value.trim();
   if (!text) { document.getElementById("feedback").textContent = "The warlock waits for an answer..."; return; }
@@ -150,6 +163,14 @@ function finalCheck(n) {
 // ---------- Escape ----------
 function escapeScreen() {
   // TODO (build crew): make this screen feel like a victory
+  // 👉 LESLIE NOTE (escape screen task). Delete this note when you're done.
+  //   Play the whole game once first, so you know what this screen looks like now.
+  //   Part A, victory: a big title, the warlock's defeated line, your knight, "Keys: 2 of 3".
+  //   Part B, count mistakes: see the LESLIE NOTE above taunt().
+  //   Part C, weak-spot scroll: show the chamber with the most mistakes and what to review.
+  //   Part D, pegasus: add up all the mistakes. 2 or fewer = Shirley's pegasus picture,
+  //     more = the knight walking out. Put her files (like pegasus.png) in this folder, show them with <img>.
+  //   Keep the Play again button. Test twice: once carefully, once with mistakes on purpose.
   // Final key count is shown below
   show(`<h1>You escaped!</h1><p class="warlock">${WARLOCK.name}: "${WARLOCK.defeated}"</p>
         <p>${player.knight.name} · ${player.difficulty.name} · Keys: ${player.keys}</p>
