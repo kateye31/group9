@@ -61,7 +61,7 @@ const LAB = {
   concept: "Methods and return values",
   story: "Bubbling potions line the shelves. Each one whispers a word when you read its code.",
   steps: [
-        // Step 1: Print "Squire"
+    // Step 1: Print "Squire"
     {
       code: 'class Knight {\n    String title() { return "Squire"; }\n}\n\nSystem.out.println(new Knight().title());',
       choices: ["Squire", "title", "Knight"],
@@ -76,7 +76,7 @@ const LAB = {
       hint: "The variable 'action' holds the string 'doing'.",
     },
 
-    // Step 3: Print "king's"
+      // Step 3 (Fixed): Print "king's"
     {
       code: 'String possessive = "king";\nSystem.out.println(possessive + "\'s");',
       choices: ["king", "king's", "possessive"],
@@ -84,71 +84,12 @@ const LAB = {
       hint: "Adding '\\'s' to 'king' makes it possessive.",
     },
 
-    // Step 4: Print "work"
+    // Step 4: Print "work" using encapsulation
     {
-      code: 'String task = "work";\nSystem.out.println(task);',
-      choices: ["work", "task", "task."],
+      code: 'class Squire {\n    private String task = "work";\n    \n    String getTask() {\n        return this.task;\n    }\n}\n\nSystem.out.println(new Squire().getTask());',
+      choices: ["work", "task", "Squire"],
       answer: 0,
-      hint: "The variable 'task' holds the string 'work'.",
-      },
-  ],
-};
-
-
-// ---------- Chamber 3: The Hall of Illusions ----------
-// 3 doors per round. They look alike, but only one has correct code.
-const HALL = {
-  title: "The Hall of Illusions",
-  concept: "Inheritance and polymorphism",
-  story: "Three doors shimmer before you. Two are illusions. Only one is real.",
-  rounds: [
-    {
-      question: "Which door makes Wizard a child class of Character?",
-      doors: [
-        "class Wizard implements Character { }",
-        "class Wizard extends Character { }",
-        "class Wizard inherits Character { }",
-      ],
-      answer: 1,
-      hint: "Java uses one keyword to inherit from a class.",
-      explain: "extends is how a class inherits from another class.",
-    },
-    {
-      question: 'Wizard overrides speak() to say "Abracadabra". Which door prints Abracadabra?',
-      doors: [
-        "Character c = new Character();\nc.speak();",
-        "Character c = new Wizard();\nc.speak();",
-        "Wizard w = null;\nw.speak();",
-      ],
-      answer: 1,
-      hint: "Java runs the method of the real object, not the variable's type.",
-      explain: "c is declared as Character but holds a Wizard, so Wizard's speak() runs. That's polymorphism.",
-    },
-    // TODO (team): one more round
-  ],
-};
-
-// ---------- Chamber 4: The Final Door ----------
-// Answer the warlock in your own words. Each answer earns a key (3 keys open the door).
-const FINAL = {
-  title: "The Final Door",
-  concept: "Explain it in your own words",
-  story: "A giant door with three keyholes. The warlock appears: 'Answer me, and the keys are yours.'",
-  questions: [
-    {
-      question: "In your own words: what is the difference between a class and an object?",
-      model: "A class is a blueprint. An object is one thing built from that blueprint.",
-      lookFor: ["blueprint or template", "an object is made from the class"],
-    },
-    {
-      question: "Why would a Wizard class extend a Character class?",
-      model: "So Wizard gets everything Character has without rewriting it, and can add its own abilities.",
-      lookFor: ["reuse code", "Wizard gets Character's fields and methods"],
-    },
-    {
-      question: "What does polymorphism mean?",
-      model: "The same method call can do different things depending on the real object.",
-      lookFor: ["same call, different behavior", "depends on the actual object"],
+      hint: "The getTask() method returns the private 'task' variable.",
     },
   ],
 };
