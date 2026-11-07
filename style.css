@@ -1,63 +1,92 @@
 /* Design crew (Shirley + Tvishaa): this file is yours.
    Change the colors here and the whole game updates.
-   Inspiration: the Group 9 design deck (torchlit dungeon, dark stone, warm gold). */
+   Inspiration: light, cute kawaii fall with variety of pastels - pumpkin, gold, burgundy, sage, rust. */
 :root {
-  --stone: #14100d;     /* TODO: dungeon background */
-  --panel: #241c16;     /* TODO: chamber panel */
-  --text: #f3e6cf;
-  --torch: #ffc21a;     /* main accent */
-  --warlock: #b98cff;   /* TODO: the warlock's color */
+  --stone: #faf6f1;     /* very light cream background */
+  --panel: #f5ebe0;     /* soft peachy-beige panels */
+  --text: #5a4a3d;      /* warm dark brown text */
+  --torch: #e8b89d;     /* soft peachy-rose accent */
+  --warlock: #d4a89c;   /* warm dusty rose - cute warlock */
+  
+  /* Fall color palette for variety */
+  --fall-pumpkin: #f5a962;    /* soft pumpkin orange */
+  --fall-golden: #e5c577;     /* warm golden yellow */
+  --fall-burgundy: #c48a8a;   /* dusty burgundy/mauve */
+  --fall-sage: #a8b89a;       /* soft sage green */
+  --fall-rust: #c98a70;       /* warm rust */
 }
 
 body {
   margin: 0;
   background: var(--stone);
+  background-image: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><defs><style>.leaf1{fill:%23f5a96255;opacity:0.6}.leaf2{fill:%23e5c57755;opacity:0.5}.leaf3{fill:%23c48a8a55;opacity:0.55}.leaf4{fill:%23a8b89a55;opacity:0.5}</style></defs><g transform="translate(50,50)"><path class="leaf1" d="M0,-20 Q-10,-10 -15,0 Q-10,10 0,20 Q10,10 15,0 Q10,-10 0,-20" transform="rotate(15)"/></g><g transform="translate(150,80)"><path class="leaf2" d="M0,-20 Q-10,-10 -15,0 Q-10,10 0,20 Q10,10 15,0 Q10,-10 0,-20" transform="rotate(45)"/></g><g transform="translate(30,150)"><path class="leaf3" d="M0,-20 Q-10,-10 -15,0 Q-10,10 0,20 Q10,10 15,0 Q10,-10 0,-20" transform="rotate(75)"/></g><g transform="translate(170,30)"><path class="leaf4" d="M0,-20 Q-10,-10 -15,0 Q-10,10 0,20 Q10,10 15,0 Q10,-10 0,-20" transform="rotate(120)"/></g><g transform="translate(100,180)"><path class="leaf1" d="M0,-20 Q-10,-10 -15,0 Q-10,10 0,20 Q10,10 15,0 Q10,-10 0,-20" transform="rotate(30)"/></g></svg>');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  background-attachment: fixed;
   color: var(--text);
-  font-family: Georgia, "Times New Roman", serif; /* TODO: pick the game's fonts */
+  font-family: Georgia, "Times New Roman", serif;
 }
+
 
 main {
   max-width: 760px;
   margin: 40px auto;
   padding: 28px;
   background: var(--panel);
-  border-radius: 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 h1, h2 { line-height: 1.2; }
-.progress { color: #a08a70; font-size: 14px; }
-.concept { color: var(--torch); font-weight: bold; }
-.story { font-style: italic; }
-.warlock { color: var(--warlock); font-weight: bold; }
-.spell { color: var(--torch); font-weight: bold; letter-spacing: 2px; }
+h2 { border-left: 4px solid var(--fall-pumpkin); padding-left: 12px; }
+.progress { color: #9a8a7d; font-size: 14px; }
+.concept { color: var(--fall-rust); font-weight: bold; }
+.story { font-style: italic; color: #6a5a4d; }
+.warlock { color: var(--fall-burgundy); font-weight: bold; }
+.spell { color: var(--fall-golden); font-weight: bold; letter-spacing: 2px; }
 
 pre {
-  background: #000;
+  background: #ede3d8;
   padding: 14px;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow-x: auto;
   text-align: left;
+  border: 1px solid #e0d5ca;
 }
 
 button {
   padding: 10px 16px;
   margin: 4px 4px 4px 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   background: var(--torch);
-  color: #1a1000;
+  color: #ffffff;
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-button.secondary { background: transparent; color: var(--torch); border: 1px solid var(--torch); }
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 184, 157, 0.3);
+}
+button.secondary { background: transparent; color: var(--torch); border: 2px solid var(--torch); }
 
 .choices { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-.choice { background: transparent; color: var(--text); border: 2px solid var(--torch); }
+.choice { background: transparent; color: var(--text); border: 2px solid var(--torch); border-radius: 12px; }
+.choice:nth-child(1) { border-color: var(--fall-pumpkin); }
+.choice:nth-child(2) { border-color: var(--fall-golden); }
+.choice:nth-child(3) { border-color: var(--fall-sage); }
+.choice:nth-child(4) { border-color: var(--fall-burgundy); }
+.choice:nth-child(5) { border-color: var(--fall-rust); }
 .choice small { display: block; font-weight: normal; }
 
 .doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
-.door { background: #3a2a1e; color: var(--text); text-align: left; }
+.door { background: #f0e5d8; color: var(--text); text-align: left; border-radius: 12px; border: 2px solid #e0d5ca; }
+.door:nth-child(1) { border-color: var(--fall-pumpkin); background: #fff8f3; }
+.door:nth-child(2) { border-color: var(--fall-sage); background: #f7faf4; }
+.door:nth-child(3) { border-color: var(--fall-burgundy); background: #faf5f5; }
 .door pre { font-size: 12px; }
 
 textarea { width: 100%; box-sizing: border-box; padding: 10px; font: inherit; border-radius: 8px; }
