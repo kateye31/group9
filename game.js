@@ -63,8 +63,10 @@ function mazeTurn(n) {
   if (n === 0) player.hintsLeft = player.difficulty.hints;
   if (n >= MAZE.turns.length) return labStep(0);
   const t = MAZE.turns[n];
+  const mazeNumber = n + 1;
   const choices = t.choices.map((c, i) => `<button class="choice" onclick="mazeAnswer(${n}, ${i})">${c}</button>`).join("");
-  show(`${header(MAZE, n + 1, MAZE.turns.length)}
+  show(`${header(MAZE, mazeNumber, MAZE.turns.length)}
+        <p class="maze-board">Maze ${mazeNumber} of ${MAZE.turns.length}</p>
         ${n === 0 ? `<p class="story">${MAZE.story}</p>` : ""}
         ${codeBlock(t.code)}<h2>${t.question}</h2>
         <div class="choices">${choices}</div>
@@ -75,7 +77,9 @@ function mazeTurn(n) {
 function mazeAnswer(n, i) {
   const t = MAZE.turns[n];
   if (i !== t.answer) return taunt();
-  show(`<h2>The path opens.</h2><p>${t.explain}</p><button onclick="mazeTurn(${n + 1})">Keep going</button>`);
+  const mazeNumber = n + 1;
+  show(`<p class="maze-board">Maze ${mazeNumber} of ${MAZE.turns.length}</p>
+        <h2>The path opens.</h2><p>${t.explain}</p><button onclick="mazeTurn(${n + 1})">Keep going</button>`);
 }
 
 // ---------- Chamber 2: The Alchemy Lab ----------
@@ -143,8 +147,19 @@ function finalCheck(n) {
   show(`<h2>Compare your answer</h2><p><b>You said:</b> ${text.replace(/</g, "&lt;")}</p>
         <p><b>A strong answer:</b> ${q.model}</p><p>Did yours include:</p><ul>${list}</ul>
         <!-- Key counter goes up here: player.keys++ when the player accepts the key -->
-        <button onclick="player.keys++; finalQuestion(${n + 1})">Yes, take the key</button>
+        <button onclick="earnKey(${n})">Yes, take the key</button>
         <button class="secondary" onclick="finalQuestion(${n})">Let me try again</button>`);
+}
+
+function earnKey(n) {
+  player.keys++;
+  const q = FINAL.questions[n];
+  show(`<p class="warlock">Key earned!</p>
+        <div class="flashcard">
+          <p class="flashcard-label">Key flashcard</p>
+          <p>${q.model}</p>
+        </div>
+        <button onclick="finalQuestion(${n + 1})">Continue</button>`);
 }
 
 // ---------- Escape ----------

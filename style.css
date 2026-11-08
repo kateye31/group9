@@ -62,4 +62,34 @@ button.secondary { background: transparent; color: var(--torch); border: 1px sol
 
 textarea { width: 100%; box-sizing: border-box; padding: 10px; font: inherit; border-radius: 8px; }
 
+.maze-board {
+  width: fit-content;
+  padding: 8px 12px;
+  margin: 12px 0;
+  border: 2px solid var(--torch);
+  border-radius: 8px;
+  color: var(--torch);
+  background: #000;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.flashcard {
+  max-width: 620px;
+  margin: 16px 0;
+  padding: 18px;
+  border: 2px solid var(--torch);
+  border-radius: 10px;
+  background: #000;
+  box-shadow: 0 4px 0 var(--torch);
+}
+
+.flashcard-label {
+  margin-top: 0;
+  color: var(--torch);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 @media (max-width: 700px) { .doors { grid-template-columns: 1fr; } }
