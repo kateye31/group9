@@ -26,10 +26,10 @@ const WARLOCK = {
   defeated: "No! You've escaped my dungeon. You truly understand objects...",
 };
 
-// ---------- Chamber 1: The Maze ----------
+// ---------- Chamber 1: The Maze (Renamed to LabyrinthLearn) ----------
 // 5 turns. Each turn is a multiple-choice question; the right answer is the right direction.
 const MAZE = {
-  title: "The Maze",
+  title: "LabyrinthLearn",
   concept: "Classes and objects",
   story: "Stone walls twist in every direction. Choose the right path at each turn.",
   turns: [
@@ -89,11 +89,11 @@ const LAB = {
       code: 'class Squire {\n    private String task = "work";\n    \n    String getTask() {\n        return this.task;\n    }\n}\n\nSystem.out.println(new Squire().getTask());',
       choices: ["work", "task", "Squire"],
       answer: 0,
-      hint: "The getTask() method returns the private 'task' variable.",
-    },
+            hint: "The getTask() method returns the private 'task' variable.",
+    }
   ],
 };
-// Lol 
+
 // ---------- Chamber 3: The Hall of Illusions ----------
 // 3 doors per round. They look alike, but only one has correct code.
 const HALL = {
@@ -148,7 +148,6 @@ const FINAL = {
       question: "What does polymorphism mean?",
       model: "The same method call can do different things depending on the real object.",
       lookFor: ["same call, different behavior", "depends on the actual object"],
-      hint: "The getTask() method returns the private 'task' variable.",
     },
   ],
 };
