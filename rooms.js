@@ -40,6 +40,7 @@ const MAZE = {
       answer: 1, // index into choices, 0 = first
       hint: "A class is the blueprint. What gets built FROM the blueprint?",
       explain: "Knight is the class. k is an object made from it with new.",
+      wrong: ["Knight is the class blueprint, not the object made from it.", "", "class is a keyword, not the object created by new."],
     },
     {
       code: "Knight a = new Knight();\nKnight b = new Knight();",
@@ -48,6 +49,7 @@ const MAZE = {
       answer: 1,
       hint: "Count how many times you see the word new.",
       explain: "Each new creates one object, so there are 2.",
+      wrong: ["There are two new expressions, so this is not just one object.", "", "Each new expression creates an object, so there are not zero."],
     },
     {
       code: "class Knight {\n    String name;\n    Knight(String newName) {\n        name = newName;\n    }\n}\n\nKnight k = new Knight(\"Byte\");",
@@ -56,6 +58,7 @@ const MAZE = {
       answer: 1,
       hint: "Look for the special method that has the same name as the class.",
       explain: "Knight(String) is the constructor. It runs when new Knight(\"Byte\") creates the object.",
+      wrong: ["name is a field; it does not run when an object is created.", "", "k is a variable holding the new object, not the creation routine."],
     },
     {
       code: "Knight a = new Knight();\nKnight b = a;",
@@ -64,6 +67,7 @@ const MAZE = {
       answer: 0,
       hint: "Assigning one variable to another copies the reference, not the object.",
       explain: "Only one object is created. Both a and b refer to that same Knight object.",
+      wrong: ["", "b = a copies a reference; it does not create a second object.", "The new Knight() expression creates one object."],
     },
     {
       code: "class Knight {\n    String name;\n    void salute() {\n        System.out.println(name + \" bows!\");\n    }\n}",
@@ -72,6 +76,7 @@ const MAZE = {
       answer: 2,
       hint: "Methods are actions that objects can perform.",
       explain: "salute() is a method. It defines behavior for objects created from the Knight class.",
+      wrong: ["name is a field that stores data, not behavior.", "Knight is the class blueprint, not an action an object performs.", ""],
     },
   ],
 };

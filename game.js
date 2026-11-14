@@ -76,7 +76,11 @@ function mazeTurn(n) {
 
 function mazeAnswer(n, i) {
   const t = MAZE.turns[n];
-  if (i !== t.answer) return taunt();
+  if (i !== t.answer) {
+    taunt();
+    document.getElementById("feedback").textContent += ` ${t.wrong[i]}`;
+    return;
+  }
   const mazeNumber = n + 1;
   show(`<p class="maze-board">Maze ${mazeNumber} of ${MAZE.turns.length}</p>
         <h2>The path opens.</h2><p>${t.explain}</p><button onclick="mazeTurn(${n + 1})">Keep going</button>`);
