@@ -3,7 +3,22 @@
 
 const app = document.getElementById("app");
 // keys: the key counter. Starts at 0, +1 per Final Door answer (see finalCheck)
-let player = { knight: null, difficulty: null, hintsLeft: 0, keys: 0, spell: [] };
+let player = {
+  knight: null,
+  difficulty: null,
+  hintsLeft: 0,
+  keys: 0,
+  spell: [],
+  mistakes: 0,
+  mazeMistakes: 0,      // Track mistakes in the Maze chamber
+  labMistakes: 0,       // Track mistakes in the Alchemy Lab chamber
+  hallMistakes: 0,      // Track mistakes in the Hall of Illusions chamber
+};
+  const knights = KNIGHTS.map((k, i) =>
+    `<button class="choice" style="border-color:${k.color}" onclick="pickKnight(${i})">${k.name}</button>`).join("");
+  show(`<h1>Knight's Escape</h1>
+        <p>Choose your knight:</p><div class="choices">${knights}</div>`);
+
 
 // Small helper: put HTML on the screen
 function show(html) {
@@ -25,7 +40,7 @@ function header(chamber, step, total) {
 // ---------- Start: choose knight, difficulty ----------
 function startScreen() {
   // New game: key counter goes back to 0
-  player = { knight: null, difficulty: null, hintsLeft: 0, keys: 0, spell: [] };
+  player = { knight: null, difficulty: null, hintsLeft: 0, keys: 0, spell: [], mistakes: 0, mazeMistakes: 0, labMistakes: 0, hallMistakes: 0 };
   const knights = KNIGHTS.map((k, i) =>
     `<button class="choice" style="border-color:${k.color}" onclick="pickKnight(${i})">${k.name}</button>`).join("");
   show(`<h1>Knight's Escape</h1>
@@ -74,7 +89,11 @@ function mazeTurn(n) {
 
 function mazeAnswer(n, i) {
   const t = MAZE.turns[n];
-  if (i !== t.answer) return taunt();
+  if (i !== t.answer) {
+    player.mistakes++;
+    player.mazeMistakes++;
+    return taunt();
+  }
   show(`<h2>The path opens.</h2><p>${t.explain}</p><button onclick="mazeTurn(${n + 1})">Keep going</button>`);
 }
 
@@ -98,7 +117,11 @@ function labStep(n) {
 
 function labAnswer(n, i) {
   const s = LAB.steps[n];
-  if (i !== s.answer) return taunt();
+  if (i !== s.answer) {
+    player.mistakes++;
+    player.labMistakes++;
+    return taunt();
+  }
   player.spell.push(s.choices[s.answer]);
   labStep(n + 1);
 }
@@ -119,7 +142,11 @@ function hallRound(n) {
 
 function hallAnswer(n, i) {
   const r = HALL.rounds[n];
-  if (i !== r.answer) return taunt();
+  if (i !== r.answer) {
+    player.mistakes++;
+    player.hallMistakes++;
+    return taunt();
+  }
   show(`<h2>The illusion fades. That door was real.</h2><p>${r.explain}</p><button onclick="hallRound(${n + 1})">Walk through</button>`);
 }
 
@@ -149,10 +176,28 @@ function finalCheck(n) {
 
 // ---------- Escape ----------
 function escapeScreen() {
-  // TODO (build crew): make this screen feel like a victory
-  // Final key count is shown below
-  show(`<h1>You escaped!</h1><p class="warlock">${WARLOCK.name}: "${WARLOCK.defeated}"</p>
-        <p>${player.knight.name} · ${player.difficulty.name} · Keys: ${player.keys}</p>
+  // Determine the chamber with the most mistakes
+  const mistakesPerChamber = {
+    "Maze": player.mazeMistakes,
+    "Alchemy Lab": player.labMistakes,
+    "Hall of Illusions": player.hallMistakes,
+  };
+
+  // Find the chamber with the most mistakes
+  const weakSpot = Object.keys(mistakesPerChamber).reduce((a, b) =>
+    mistakesPerChamber[a] > mistakesPerChamber[b] ? a : b
+  );
+
+  // Get the concept for the weak-spot chamber
+  let weakSpotConcept = "";
+  if (weakSpot === "Maze") weakSpotConcept = MAZE.concept;
+  else if (weakSpot === "Alchemy Lab") weakSpotConcept = LAB.concept;
+  else if (weakSpot === "Hall of Illusions") weakSpotConcept = HALL.concept;
+
+  show(`<h1>You escaped!</h1>
+        <p class="warlock">${WARLOCK.name}: "${WARLOCK.defeated}"</p>
+        <p>${player.knight.name} · ${player.difficulty.name} · Keys: ${player.keys} of ${FINAL.questions.length} · Mistakes: ${player.mistakes}</p>
+        ${player.mistakes > 0 ? `<p class="weak-spot">Review the ${weakSpot}: ${weakSpotConcept}</p>` : ""}
         <button onclick="startScreen()">Play again</button>`);
 }
 
